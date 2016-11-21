@@ -12,7 +12,6 @@ import SwiftyJSON
 struct HomeTweetsRepository {
     
     func getHomeTweets(completionHandler: @escaping (Result<JSON>) -> ()) {
-        
         let request = Alamofire.request(NetworkRouter.getHomeTweets(parameters: [:]))
         
         request.responseJSON { response in
@@ -23,7 +22,6 @@ struct HomeTweetsRepository {
                 completionHandler(.success(JSON(json)))
             }
         }
-        
     }
     
 }

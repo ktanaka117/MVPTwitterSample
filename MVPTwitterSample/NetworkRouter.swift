@@ -9,6 +9,10 @@
 import Alamofire
 import Social
 
+enum NetworkError: Error {
+    case requestGeneration
+}
+
 enum NetworkRouter: URLRequestConvertible {
     
     case getHomeTweets(parameters: [String: Any])
@@ -39,16 +43,16 @@ enum NetworkRouter: URLRequestConvertible {
     }
     
     func asURLRequest() throws -> URLRequest {
-        let request = SLRequest(
+        guard let request = SLRequest(
             forServiceType: SLServiceTypeTwitter,
             requestMethod: Method,
             url: URL(string: URLString + EndPoint),
             parameters: Parameters
-        )
+            ) else { throw NetworkError.requestGeneration }
         
-        request?.account = Account.twitterAccount
+        request.account = Account.twitterAccount
         
-        return request!.preparedURLRequest()
+        return request.preparedURLRequest()
     }
     
 }
