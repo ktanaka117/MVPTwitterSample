@@ -46,7 +46,7 @@ struct User: Entity {
     let isFollowing: Bool
     
     // リストに入れられている数
-    let listedCount: String
+    let listedCount: Int
     
     init?(json: JSON) {
         
@@ -60,11 +60,11 @@ struct User: Entity {
             let statusesCount         = json["statuses_count"].int,
             let friendsCount          = json["friends_count"].int,
             let followersCount        = json["followers_count"].int,
-            let favoritesCount        = json["favorites_count"].int,
+            let favoritesCount        = json["favourites_count"].int,
             let location              = json["location"].string,
-            let isDefaultProfileImage = json["is_default_profile_image"].bool,
-            let isFollowing           = json["is_following"].bool,
-            let listedCount           = json["listed_count"].string
+            let isDefaultProfileImage = json["default_profile_image"].bool,
+            let isFollowing           = json["following"].bool,
+            let listedCount           = json["listed_count"].int
         else {
             return nil
         }

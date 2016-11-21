@@ -12,9 +12,8 @@ class TweetsTranslater {
     
     func translate(json: JSON) -> [Tweet] {
 
-        guard let tweetsData = json.array else { return [] }
-        return tweetsData.flatMap { Tweet(json: $0) }
-        
+        return json.array?.flatMap { Tweet(json: $0 ) } ?? []
+
     }
     
 }

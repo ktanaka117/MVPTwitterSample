@@ -22,7 +22,7 @@ struct Tweet: Entity {
             let id        = json["id_str"].string,
             let text      = json["text"].string,
             let favorited = json["favorited"].bool,
-            let retweeted = json["retweetes"].bool,
+            let retweeted = json["retweeted"].bool,
             let user      = User(json: json["user"])
         else {
             return nil
