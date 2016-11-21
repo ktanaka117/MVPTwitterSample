@@ -24,8 +24,8 @@ class TweetTableViewCell: UITableViewCell {
     
     func fill(withTweet tweet: Tweet) {
         
-        iconImageView.af_setImage(withURL: URL(string: tweet.user.profileImageURLString)!)
-        screenNameLabel.text = "@\(tweet.user.screenName)"
+        iconImageView.af_setImage(withURL: tweet.user.profileImageURL)
+        screenNameLabel.text = "@" + tweet.user.screenName
         nameLabel.text = tweet.user.name
         descriptionLabel.text = tweet.text
         

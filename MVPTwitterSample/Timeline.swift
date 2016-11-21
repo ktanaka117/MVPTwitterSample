@@ -12,23 +12,11 @@ struct Timeline: DataType {
     
     typealias ItemType = Tweet
     
-    private var items: [ItemType] = []
+    var items: [ItemType] = []
     
     init(items: [ItemType]) {
         
         self.items = items
-        
-    }
-    
-    var numberOfItem: Int {
-        
-        return items.count
-        
-    }
-    
-    subscript(index: Int) -> Tweet {
-        
-        return items[index]
         
     }
     

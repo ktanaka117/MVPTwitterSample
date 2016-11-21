@@ -12,11 +12,22 @@ protocol DataType {
     
     associatedtype ItemType
     
+    var items: [ItemType] { get set }
+    
     var numberOfItem: Int { get }
     
     subscript(index: Int) -> ItemType { get }
     
     func insert(item: ItemType, at index: Int) -> Self
     func delete(at index: Int) -> Self
+}
+
+extension DataType {
+    var numberOfItem: Int {
+        return items.count
+    }
     
+    subscript(index: Int) -> ItemType {
+        return items[index]
+    }
 }

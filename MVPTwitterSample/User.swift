@@ -8,7 +8,7 @@
 
 import SwiftyJSON
 
-struct User {
+struct User: Entity {
     
     let id: String
     
@@ -19,22 +19,22 @@ struct User {
     let name: String
     
     // プロフィール画像URL
-    let profileImageURLString: String
+    let profileImageURL: URL
     
     // 紹介文
     let description: String
     
     // ツイート数
-    let statusesCount: String
+    let statusesCount: Int
     
     // フォロー数
-    let friendsCount: String
+    let friendsCount: Int
     
     // フォロワー数
-    let followersCount: String
+    let followersCount: Int
     
     // お気に入り数
-    let favoritesCount: String
+    let favoritesCount: Int
     
     // ロケーション
     let location: String
@@ -48,21 +48,40 @@ struct User {
     // リストに入れられている数
     let listedCount: String
     
-    init(json: JSON) {
+    init?(json: JSON) {
         
-        self.id                    = json["id_str"].stringValue
-        self.screenName            = json["screen_name"].stringValue
-        self.name                  = json["name"].stringValue
-        self.profileImageURLString = json["profile_image_url_https"].stringValue
-        self.description           = json["description"].stringValue
-        self.statusesCount         = json["statuses_count"].stringValue
-        self.friendsCount          = json["friends_count"].stringValue
-        self.followersCount        = json["followers_count"].stringValue
-        self.favoritesCount        = json["favorites_count"].stringValue
-        self.location              = json["location"].stringValue
-        self.isDefaultProfileImage = json["is_default_profile_image"].boolValue
-        self.isFollowing           = json["is_following"].boolValue
-        self.listedCount           = json["listed_count"].stringValue
+        guard
+            let id                    = json["id_str"].string,
+            let screenName            = json["screen_name"].string,
+            let name                  = json["name"].string,
+            let profileImageURLString = json["profile_image_url_https"].string,
+            let profileImageURL       = URL(string: profileImageURLString),
+            let description           = json["description"].string,
+            let statusesCount         = json["statuses_count"].int,
+            let friendsCount          = json["friends_count"].int,
+            let followersCount        = json["followers_count"].int,
+            let favoritesCount        = json["favorites_count"].int,
+            let location              = json["location"].string,
+            let isDefaultProfileImage = json["is_default_profile_image"].bool,
+            let isFollowing           = json["is_following"].bool,
+            let listedCount           = json["listed_count"].string
+        else {
+            return nil
+        }
+        
+        self.id                    = id
+        self.screenName            = screenName
+        self.name                  = name
+        self.profileImageURL       = profileImageURL
+        self.description           = description
+        self.statusesCount         = statusesCount
+        self.friendsCount          = friendsCount
+        self.followersCount        = followersCount
+        self.favoritesCount        = favoritesCount
+        self.location              = location
+        self.isDefaultProfileImage = isDefaultProfileImage
+        self.isFollowing           = isFollowing
+        self.listedCount           = listedCount
         
     }
     

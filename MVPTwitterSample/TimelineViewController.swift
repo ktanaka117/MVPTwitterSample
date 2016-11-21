@@ -42,7 +42,7 @@ class TimelineViewController: UIViewController {
     
     // HACK: VC内でVCを持つことに関しては別記事にて取り扱う
     private func transitionToLoginViewController() {
-        guard let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else { return }
+        guard let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else { return }
         
         loginVC.didLogin = { [weak self] in
             self?.timelinePresenter.getTimeline()
