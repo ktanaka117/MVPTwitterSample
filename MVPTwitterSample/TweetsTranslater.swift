@@ -11,19 +11,9 @@ import SwiftyJSON
 class TweetsTranslater {
     
     func translate(json: JSON) -> [Tweet] {
-        
-        var tweets: [Tweet] = []
-        
-        guard let tweetsData = json.array else { return [] }
-        
-        for data in tweetsData {
-            let user = User(json: data["user"])
-            let tweet = Tweet(json: data, user: user)
-            tweets.append(tweet)
-        }
-        
-        return tweets
-        
+
+        return json.array?.flatMap { Tweet(json: $0 ) } ?? []
+
     }
     
 }

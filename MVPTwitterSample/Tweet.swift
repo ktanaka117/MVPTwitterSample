@@ -8,7 +8,7 @@
 
 import SwiftyJSON
 
-struct Tweet {
+struct Tweet: Entity {
     
     let id: String
     let text: String
@@ -16,12 +16,22 @@ struct Tweet {
     let retweeted: Bool
     let user: User
     
-    init(json: JSON, user: User) {
+    init?(json: JSON) {
         
-        self.id        = json["id_str"].stringValue
-        self.text      = json["text"].stringValue
-        self.favorited = json["favorited"].boolValue
-        self.retweeted = json["retweetes"].boolValue
+        guard
+            let id        = json["id_str"].string,
+            let text      = json["text"].string,
+            let favorited = json["favorited"].bool,
+            let retweeted = json["retweeted"].bool,
+            let user      = User(json: json["user"])
+        else {
+            return nil
+        }
+        
+        self.id        = id
+        self.text      = text
+        self.favorited = favorited
+        self.retweeted = retweeted
         self.user      = user
         
     }
