@@ -144,13 +144,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfK-ww-gHp">
-                                <rect key="frame" x="78.5" y="247.5" width="219" height="172"/>
+                                <rect key="frame" x="102.5" y="247.5" width="171" height="172"/>
                                 <string key="text">ログイン中...
 
 なうろぐいん
 なうろぐいん
 なうろぐいん
-なうろうろぐいーん</string>
+なうろぐいーん</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
