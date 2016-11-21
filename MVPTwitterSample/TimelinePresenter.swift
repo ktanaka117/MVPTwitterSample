@@ -25,7 +25,14 @@ class TimelinePresenter {
             case .success(let timeline):
                 self?.timelineVCOutput.hideEmptyView()
                 self?.timelineVCOutput.showTimeline(timeline: timeline)
+                self?.showEmptyViewIfNeeded(timeline: timeline)
             }
+        }
+    }
+    
+    private func showEmptyViewIfNeeded(timeline: Timeline) {
+        if timeline.numberOfItem == 0 {
+            timelineVCOutput.showEmptyView()
         }
     }
     
